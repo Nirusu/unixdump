@@ -21,7 +21,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	"github.com/Gui774ume/unixdump/pkg/unixdump"
+	"github.com/Nirusu/unixdump/pkg/unixdump"
 )
 
 // CLIOptions are the command line options of ssh-probe

@@ -19,7 +19,7 @@ package main
 import (
 	"github.com/sirupsen/logrus"
 
-	"github.com/Gui774ume/unixdump/cmd/unixdump/run"
+	"github.com/Nirusu/unixdump/cmd/unixdump/run"
 )
 
 func main() {

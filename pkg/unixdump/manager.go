@@ -26,8 +26,8 @@ import (
 	"github.com/pkg/errors"
 	"golang.org/x/sys/unix"
 
-	"github.com/Gui774ume/unixdump/pkg/assets"
-	"github.com/Gui774ume/unixdump/pkg/ringbuf"
+	"github.com/Nirusu/unixdump/pkg/assets"
+	"github.com/Nirusu/unixdump/pkg/ringbuf"
 )
 
 func (e *UnixDump) prepareManager() {

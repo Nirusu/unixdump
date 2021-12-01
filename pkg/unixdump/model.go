@@ -21,7 +21,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/Gui774ume/unixdump/pkg/utils"
+	"github.com/Nirusu/unixdump/pkg/utils"
 )
 
 // ErrNotEnoughData not enough data

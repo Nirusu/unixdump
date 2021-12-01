@@ -62,7 +62,7 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/Gui774ume/unixdump/pkg/unixdump"
+	"github.com/Nirusu/unixdump/pkg/unixdump"
 )
 
 func main() {

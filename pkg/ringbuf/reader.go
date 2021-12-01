@@ -27,7 +27,7 @@ import (
 	"github.com/cilium/ebpf"
 	"golang.org/x/sys/unix"
 
-	"github.com/Gui774ume/unixdump/pkg/utils"
+	"github.com/Nirusu/unixdump/pkg/utils"
 )
 
 var (

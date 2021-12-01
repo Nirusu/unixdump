@@ -25,7 +25,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
-	"github.com/Gui774ume/unixdump/pkg/unixdump"
+	"github.com/Nirusu/unixdump/pkg/unixdump"
 )
 
 func unixdumpCmd(cmd *cobra.Command, args []string) error {

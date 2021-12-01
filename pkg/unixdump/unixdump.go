@@ -33,7 +33,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 
-	"github.com/Gui774ume/unixdump/pkg/ringbuf"
+	"github.com/Nirusu/unixdump/pkg/ringbuf"
 )
 
 // UnixDump is the main UnixDump structure

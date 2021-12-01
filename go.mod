@@ -1,4 +1,4 @@
-module github.com/Gui774ume/unixdump
+module github.com/Nirusu/unixdump
 
 go 1.15
 
