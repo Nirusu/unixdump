@@ -34,6 +34,7 @@ type Options struct {
 	SocketFilters []string
 	EventHandler  func(event UnixEvent)
 	PCAPOutput    bool
+	PCAPPath      string
 }
 
 func (o Options) check() error {

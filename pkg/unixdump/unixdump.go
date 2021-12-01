@@ -67,12 +67,19 @@ func NewUnixDump(options Options) (*UnixDump, error) {
 	}
 
 	if options.PCAPOutput {
-		e.dumpFile, err = ioutil.TempFile("/tmp", "unixdump-*.pcap")
-		if err != nil {
-			return nil, err
-		}
-		if err = os.Chmod(e.dumpFile.Name(), 0777); err != nil {
-			return nil, err
+		if len(options.PCAPPath) == 0 {
+			e.dumpFile, err = ioutil.TempFile("/tmp", "unixdump-*.pcap")
+			if err != nil {
+				return nil, err
+			}
+			if err = os.Chmod(e.dumpFile.Name(), 0666); err != nil {
+				return nil, err
+			}
+		} else {
+			e.dumpFile, err = os.Create(options.PCAPPath)
+			if err != nil {
+				return nil, err
+			}
 		}
 		e.pcapWriter, err = pcapgo.NewNgWriter(e.dumpFile, layers.LinkTypeNull)
 		if err != nil {
