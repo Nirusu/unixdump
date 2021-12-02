@@ -20,6 +20,7 @@ import (
 	"context"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"sync"
 	"time"
 
@@ -67,19 +68,27 @@ func NewUnixDump(options Options) (*UnixDump, error) {
 	}
 
 	if options.PCAPOutput {
-		if len(options.PCAPPath) == 0 {
-			e.dumpFile, err = ioutil.TempFile("/tmp", "unixdump-*.pcap")
+		if len(options.PCAPOutputPath) > 0 {
+			stat, err := os.Stat(options.PCAPOutputPath)
 			if err != nil {
 				return nil, err
 			}
-			if err = os.Chmod(e.dumpFile.Name(), 0666); err != nil {
-				return nil, err
+			if stat.IsDir() {
+				t := time.Now()
+				timeString := t.Format("2006-01-02-15-04-05")
+				filename := filepath.Join(options.PCAPOutputPath, "unixdump-"+timeString+".pcap")
+				e.dumpFile, err = os.Create(filename)
+			} else {
+				e.dumpFile, err = os.Create(options.PCAPOutputPath)
 			}
 		} else {
-			e.dumpFile, err = os.Create(options.PCAPPath)
-			if err != nil {
-				return nil, err
-			}
+			e.dumpFile, err = ioutil.TempFile("/tmp", "unixdump-*.pcap")
+		}
+		if err != nil {
+			return nil, err
+		}
+		if err = os.Chmod(e.dumpFile.Name(), 0666); err != nil {
+			return nil, err
 		}
 		e.pcapWriter, err = pcapgo.NewNgWriter(e.dumpFile, layers.LinkTypeNull)
 		if err != nil {

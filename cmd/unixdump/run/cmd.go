@@ -51,6 +51,10 @@ func init() {
 		"pcap",
 		false,
 		"when set, UnixDump will export the captured data in a pcap file")
+	UnixDump.Flags().StringVar(&options.UnixDumpOptions.PCAPOutputPath,
+		"pcap-path",
+		"",
+		"output directory or file for the pcap capture. requires pcap to be set to true. this overwrites existing files!")
 	UnixDump.Flags().StringArrayVar(
 		&options.UnixDumpOptions.SocketFilters,
 		"socket",

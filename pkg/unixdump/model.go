@@ -29,12 +29,12 @@ var ErrNotEnoughData = errors.New("not enough data")
 
 // Options contains the parameters of UnixDump
 type Options struct {
-	CommFilters   []string
-	PidFilter     int
-	SocketFilters []string
-	EventHandler  func(event UnixEvent)
-	PCAPOutput    bool
-	PCAPPath      string
+	CommFilters    []string
+	PidFilter      int
+	SocketFilters  []string
+	EventHandler   func(event UnixEvent)
+	PCAPOutput     bool
+	PCAPOutputPath string
 }
 
 func (o Options) check() error {
