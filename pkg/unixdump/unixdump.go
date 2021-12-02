@@ -70,10 +70,10 @@ func NewUnixDump(options Options) (*UnixDump, error) {
 	if options.PCAPOutput {
 		if len(options.PCAPOutputPath) > 0 {
 			stat, err := os.Stat(options.PCAPOutputPath)
-			if err != nil {
+			if !os.IsNotExist(err) && err != nil {
 				return nil, err
 			}
-			if stat.IsDir() {
+			if !os.IsNotExist(err) && stat.IsDir() {
 				t := time.Now()
 				timeString := t.Format("2006-01-02-15-04-05")
 				filename := filepath.Join(options.PCAPOutputPath, "unixdump-"+timeString+".pcap")
