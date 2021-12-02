@@ -202,12 +202,13 @@ func (e *UnixDump) handleEvent(data []byte) {
 	// write pcap file
 	if e.pcapWriter != nil {
 		capInfo := gopacket.CaptureInfo{
-			Length:        int(evt.PacketLen),
-			CaptureLength: int(evt.PacketLen),
+			Length:        int(evt.PacketLen) + 4,
+			CaptureLength: int(evt.PacketLen) + 4,
 			Timestamp:     time.Now(),
 		}
 
-		if err := e.pcapWriter.WritePacket(capInfo, evt.Data); err != nil {
+		pcapData := append([]byte{0, 0, 0, 0}, evt.Data...)
+		if err := e.pcapWriter.WritePacket(capInfo, pcapData); err != nil {
 			logrus.Debugf("couldn't write packet in capture file: %s", err)
 		}
 	}
